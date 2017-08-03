@@ -1,0 +1,42 @@
+﻿10번 부서의 월급 평균, 최대값, 최소값을 구하시오
+
+select deptno, avg(sal), max(sal), min(sal) from emp
+where deptno=10;
+
+s
+부서별 월급 평균, 초대값, 최소값을 구하시오.
+select deptno, avg(sal), max(sal), min(sal) from emp
+group by deptno;
+
+10번 부서에 속한 사람들의 직책별 월급평균을 구하시오
+select job, avg(sal) from emp
+where deptno=10
+group by job;
+
+부서별 월급 평균, 최대값, 최소값을 구하되 월급평균이 3000이상인 부서에 대하여 구하시오
+select deptno, avg(sal), max(sal), min(sal) from emp
+group by deptno
+having avg(sal) >= 3000;			//avg는 그룹function.. where이 아닌 having을 써야한다.
+
+직책별 월급평균, 최대값, 최소값을 구하되 월급의 최대값이 4000보다 큰 직책에 대하여 구하시오
+select job, avg(sal), max(sal), min(sal) from emp
+group by job
+having max(sal) > 4000;
+
+10번 부서에 속한 사람들의 직책별 월급평균을 구하되 월급평균이 3500이하인 직책에 대하여 구하시오.
+select job, avg(sal) from emp
+where deptno=10
+group by job
+having avg(sal) <= 3500;
+
+직책이 CLERK인 사람들의 부서별 월급 평균, 최대값을 구하되 월급의 최대값이 3600보다 작은 부서에 대하여 구하시오.
+select deptno, avg(sal), max(sal) from emp
+where job='CLERK'
+group by deptno
+having max(sal)<3600;
+
+
+이름에 ER이 들어있는 사람들의 직책별 월급평균, 최대값, 최소값을 구하시오.
+select job, avg(sal), max(sal), min(sal) from emp
+where ename like "%ER%"
+group by job;
